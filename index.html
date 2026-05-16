@@ -447,6 +447,80 @@
       line-height: 1.7;
     }
 
+    .project-card-div {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.6rem;
+      transition: border-color 0.2s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .project-card-div:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.2rem;
+    }
+
+    .project-stack-tag {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      background: rgba(129,140,248,0.08);
+      border: 1px solid rgba(129,140,248,0.2);
+      color: var(--accent2);
+    }
+
+    .project-actions {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: auto;
+      padding-top: 0.4rem;
+    }
+
+    .project-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s;
+    }
+
+    .project-btn-primary {
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .project-btn-primary:hover {
+      background: rgba(56, 189, 248, 0.22);
+      border-color: var(--accent);
+    }
+
+    .project-btn-secondary {
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    .project-btn-secondary:hover {
+      border-color: var(--accent2);
+      color: var(--accent2);
+    }
+
     /* CONTACT */
     #contact {
       background: var(--bg2);
@@ -789,6 +863,38 @@
       </p>
       <div class="projects-grid">
 
+        <!-- SLATE -->
+        <div class="project-card-div">
+          <div class="project-card-top">
+            <div class="project-icon">🗂️</div>
+            <span class="project-status status-live">Live</span>
+          </div>
+          <div>
+            <div class="project-name">Slate</div>
+            <div class="project-desc">
+              A personal productivity app I built from scratch — Hebrew-first Kanban boards + Notes,
+              live-synced across web and Android. Drag-and-drop cards, subtasks, sharing, and an AI assistant
+              wired to your boards. The kind of tool that was "supposed to take a weekend."
+            </div>
+          </div>
+          <div class="project-stack">
+            <span class="project-stack-tag">React 19</span>
+            <span class="project-stack-tag">TypeScript</span>
+            <span class="project-stack-tag">Firebase</span>
+            <span class="project-stack-tag">Android (Kotlin)</span>
+            <span class="project-stack-tag">Gemini AI</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://slate-b245a.web.app" target="_blank" class="project-btn project-btn-primary">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              Open Web App
+            </a>
+            <a href="https://github.com/eladedi/slate/releases/latest" target="_blank" class="project-btn project-btn-secondary" title="Download latest Android APK">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Android APK
+            </a>
+          </div>
+        </div>
 
       </div>
     </div>

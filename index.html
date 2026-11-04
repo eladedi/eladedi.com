@@ -63,6 +63,16 @@
     }
     .nav-links .nav-cta:hover { background: var(--signal); color: #fff; }
 
+    /* Soft moving gradient on contact controls */
+    .glow {
+      background-image: linear-gradient(110deg, #13203A 0%, #13203A 30%, #24357E 50%, #13203A 70%, #13203A 100%) !important;
+      background-size: 300% 100% !important;
+      animation: glow 9s ease-in-out infinite;
+    }
+    .nav-links .nav-cta.glow:hover { background-image: none !important; background-color: var(--signal) !important; }
+    @keyframes glow { 0% { background-position: 100% 0; } 50% { background-position: 0% 0; } 100% { background-position: 100% 0; } }
+    @media (prefers-reduced-motion: reduce) { .glow { animation: none; } }
+
     /* ---------- HERO (mobile first) ---------- */
     .hero { padding: 36px 0 44px; }
     .hero-grid { display: grid; grid-template-areas: "name" "photo" "side"; gap: 22px; }
@@ -88,7 +98,7 @@
       max-width: 24ch;
       margin-bottom: 0;
     }
-    .hero-side p.intro { color: var(--ink-soft); max-width: 52ch; margin: 16px 0 26px; font-size: 1.05rem; line-height: 1.65; }
+    .hero-side p.intro { color: var(--ink-soft); max-width: 52ch; margin: 16px 0 0; font-size: 1.05rem; line-height: 1.65; }
     .portrait { margin: 0; position: relative; border-radius: 18px; overflow: hidden; background: var(--paper-2); }
     .portrait img { display: block; width: 100%; height: auto; aspect-ratio: 789 / 860; object-fit: cover; object-position: 30% 30%; }
     .portrait figcaption {
@@ -103,7 +113,7 @@
       .hero h1 { margin-top: -0.08em; }
       .hero-side { margin-top: 28px; }
       .portrait img { aspect-ratio: auto; position: absolute; inset: 0; height: 100%; }
-      .portrait { min-height: 440px; }
+      .portrait { min-height: 340px; }
     }
     .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
     .btn {
@@ -327,7 +337,7 @@
         <li><a href="#experience">Experience</a></li>
         <li><a href="#clients">Client work</a></li>
         <li><a href="#ventures">Ventures</a></li>
-        <li><a href="#contact" class="nav-cta">Get in touch</a></li>
+        <li><a href="#contact" class="nav-cta glow">Get in touch</a></li>
       </ul>
     </div>
   </nav>
@@ -343,10 +353,6 @@
           <div class="hero-side">
             <p class="pitch">Engineer's depth. Business instinct. Founder's ownership.</p>
             <p class="intro">Presales Consultant Engineer at Siemens, formerly Technical Account Manager at Altair Engineering. I work with enterprise HPC customers from the first discovery conversation to a system running in production. I understand the business impact, and I see the technical gap that stands in the way.</p>
-            <div class="actions">
-              <a class="btn btn-solid" href="mailto:eladedi11391@gmail.com">Email me</a>
-              <a class="btn btn-line" href="https://www.linkedin.com/in/elad-edi" target="_blank" rel="noopener">LinkedIn</a>
-            </div>
           </div>
       </div>
 
@@ -649,7 +655,7 @@
   </div>
       </div>
       <h2 class="contact-m-title">Get in touch</h2>
-      <div class="contact-icons" role="navigation" aria-label="Contact">
+      <div class="contact-icons glow" role="navigation" aria-label="Contact">
     <a href="mailto:eladedi11391@gmail.com" aria-label="Email" title="Email">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
     </a>
@@ -673,7 +679,7 @@
     </div>
   </footer>
 
-  <aside class="quick" id="quick" aria-label="Quick contact">
+  <aside class="quick glow" id="quick" aria-label="Quick contact">
     <a href="mailto:eladedi11391@gmail.com" aria-label="Email" title="Email">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
     </a>
@@ -696,7 +702,7 @@
     if (!bar || !('IntersectionObserver' in window)) return;
     let pastHero = false, atContact = false;
     const update = () => bar.classList.toggle('on', pastHero && !atContact);
-    new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting; update(); }).observe(hero);
+    pastHero = true; update();
     new IntersectionObserver(([e]) => { atContact = e.isIntersecting; update(); }, { threshold: 0.15 }).observe(contact);
   })();
   (function () {

@@ -4,947 +4,854 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Elad Edi</title>
+  <meta name="description" content="Elad Edi, Presales Consultant Engineer at Siemens. Technical depth, business instinct and founder's ownership in high-performance computing." />
+  <meta property="og:title" content="Elad Edi" />
+  <meta property="og:description" content="Engineer's depth. Business instinct. Founder's ownership." />
+  <meta property="og:url" content="https://eladedi.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0d1117;
-      --bg2: #161b22;
-      --bg3: #1c2230;
-      --accent: #38bdf8;
-      --accent2: #818cf8;
-      --text: #e2e8f0;
-      --muted: #8b949e;
-      --border: #30363d;
-      --green: #3fb950;
+      --paper: #F2F4F6;
+      --paper-2: #E6EAEE;
+      --ink: #13203A;
+      --ink-soft: #4A5670;
+      --rule: #C9D0D9;
+      --signal: #2F45FF;   /* scheduled / primary */
+      --amber: #FF9F1C;    /* running / highlight */
+      --teal: #12A88A;     /* done / healthy */
+      --display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+      --body: 'Instrument Sans', 'Segoe UI', system-ui, sans-serif;
+      --gutter: clamp(16px, 4vw, 48px);
+      --max: 1180px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 17px;
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* NAV */
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 4px; }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+
+    /* ---------- NAV ---------- */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(13, 17, 23, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(242, 244, 246, 0.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
     }
-
-    .nav-logo {
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--accent);
-      letter-spacing: 0.05em;
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .mark { font-family: var(--display); font-weight: 800; font-size: 1.15rem; text-decoration: none; letter-spacing: -0.02em; }
+    .mark span { color: var(--signal); }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; font-size: 0.95rem; color: var(--ink-soft); }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links .nav-cta {
+      color: var(--paper); background: var(--ink); padding: 0.45rem 1rem; border-radius: 999px; font-weight: 600;
     }
+    .nav-links .nav-cta:hover { background: var(--signal); color: #fff; }
 
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--text); }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 6rem 2rem 4rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .hero-inner { width: 100%; }
-
-    .hero-eyebrow {
-      font-size: 0.9rem;
-      color: var(--accent);
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .hero-eyebrow::before {
-      content: '';
-      display: inline-block;
-      width: 32px;
-      height: 2px;
-      background: var(--accent);
-    }
-
-    h1 {
-      font-size: clamp(2.8rem, 7vw, 5rem);
-      font-weight: 800;
-      line-height: 1.1;
+    /* ---------- HERO (mobile first) ---------- */
+    .hero { padding: 36px 0 44px; }
+    .hero-grid { display: grid; grid-template-areas: "name" "photo" "side"; gap: 22px; }
+    .hero h1 { grid-area: name; }
+    .portrait { grid-area: photo; }
+    .hero-side { grid-area: side; }
+    .hero h1 {
+      font-family: var(--display);
+      font-weight: 750;
+      font-variation-settings: "wdth" 96;
+      font-size: clamp(3.2rem, 14vw, 6.6rem);
+      line-height: 0.98;
       letter-spacing: -0.03em;
-      margin-bottom: 1rem;
     }
-
-    .hero-tagline {
-      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-      color: var(--muted);
-      max-width: 620px;
-      margin-bottom: 2.5rem;
-      line-height: 1.7;
+    .hero-side { margin-top: 4px; }
+    .hero-side p.pitch {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: clamp(1.3rem, 5vw, 1.85rem);
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      max-width: 24ch;
+      margin-bottom: 0;
     }
-
-    .hero-tagline strong {
-      color: var(--text);
+    .hero-side p.intro { color: var(--ink-soft); max-width: 52ch; margin: 16px 0 26px; font-size: 1.05rem; line-height: 1.65; }
+    .portrait { margin: 0; position: relative; border-radius: 18px; overflow: hidden; background: var(--paper-2); }
+    .portrait img { display: block; width: 100%; height: auto; aspect-ratio: 789 / 860; object-fit: cover; object-position: 30% 30%; }
+    .portrait figcaption {
+      position: absolute; left: 12px; bottom: 12px;
+      font-size: 0.8rem; font-weight: 500; color: #fff;
+      background: rgba(19, 32, 58, 0.72); backdrop-filter: blur(6px);
+      padding: 0.3rem 0.7rem; border-radius: 999px;
     }
-
-    .hero-cta {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
+    @media (min-width: 900px) {
+      .hero { padding: 72px 0 56px; }
+      .hero-grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); grid-template-areas: "name photo" "side photo"; grid-template-rows: auto 1fr; column-gap: 64px; row-gap: 0; }
+      .hero h1 { margin-top: -0.08em; }
+      .hero-side { margin-top: 28px; }
+      .portrait img { aspect-ratio: auto; position: absolute; inset: 0; height: 100%; }
+      .portrait { min-height: 440px; }
     }
-
+    .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
     .btn {
-      padding: 0.7rem 1.6rem;
-      border-radius: 6px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s;
-      cursor: pointer;
-      border: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #0d1117;
-    }
-
-    .btn-primary:hover {
-      background: #7dd3fc;
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    /* SECTION BASE */
-    section {
-      padding: 6rem 2rem;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-
-    .section-title {
-      font-size: clamp(1.6rem, 4vw, 2.2rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 3rem;
-      color: var(--text);
-    }
-
-    /* ABOUT */
-    #about {
-      background: var(--bg2);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    .about-text p {
-      color: var(--muted);
-      margin-bottom: 1.2rem;
-      font-size: 1.05rem;
-      line-height: 1.8;
-    }
-
-    .about-text p strong {
-      color: var(--text);
-    }
-
-    .about-facts {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .fact-card {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1rem 1.2rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-
-    .fact-icon {
-      font-size: 1.4rem;
-      line-height: 1;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .fact-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      margin-bottom: 0.2rem;
-    }
-
-    .fact-value {
-      font-size: 0.95rem;
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    /* EXPERIENCE */
-    .timeline {
-      position: relative;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: var(--border);
-    }
-
-    .timeline-item {
-      padding-left: 2rem;
-      margin-bottom: 3rem;
-      position: relative;
-    }
-
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -5px;
-      top: 6px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--bg);
-      border: 2px solid var(--accent);
-    }
-
-    .timeline-item:first-child::before {
-      background: var(--accent);
-    }
-
-    .timeline-meta {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      margin-bottom: 0.4rem;
-      flex-wrap: wrap;
-    }
-
-    .timeline-company {
-      font-weight: 700;
-      font-size: 1.05rem;
-      color: var(--text);
-    }
-
-    .timeline-badge {
-      font-size: 0.72rem;
-      font-weight: 600;
-      padding: 0.2rem 0.6rem;
-      border-radius: 20px;
-      background: rgba(56, 189, 248, 0.1);
-      color: var(--accent);
-      border: 1px solid rgba(56, 189, 248, 0.2);
-    }
-
-    .timeline-role {
-      font-size: 0.9rem;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 0.2rem;
-    }
-
-    .timeline-period {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 0.8rem;
-    }
-
-    .timeline-desc {
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.75;
-    }
-
-    /* SKILLS */
-    #skills {
-      background: var(--bg2);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .skill-group {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.4rem;
-    }
-
-    .skill-group-title {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--accent2);
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .skill-tag {
-      font-size: 0.82rem;
-      padding: 0.3rem 0.7rem;
-      border-radius: 4px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      color: var(--text);
-    }
-
-    /* PROJECTS */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .project-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.6rem;
-      transition: border-color 0.2s, transform 0.2s;
-      text-decoration: none;
-      display: block;
-    }
-
-    .project-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    .project-card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 1rem;
-    }
-
-    .project-icon { font-size: 1.8rem; }
-
-    .project-status {
-      font-size: 0.72rem;
-      font-weight: 600;
-      padding: 0.2rem 0.6rem;
-      border-radius: 20px;
-    }
-
-    .status-live {
-      background: rgba(63, 185, 80, 0.1);
-      color: var(--green);
-      border: 1px solid rgba(63, 185, 80, 0.2);
-    }
-
-    .status-soon {
-      background: rgba(255, 193, 7, 0.1);
-      color: #ffc107;
-      border: 1px solid rgba(255, 193, 7, 0.2);
-    }
-
-    .project-name {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.4rem;
-    }
-
-    .project-desc {
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .project-placeholder {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 3rem 2rem;
-      border: 1px dashed var(--border);
-      border-radius: 10px;
-      color: var(--muted);
-    }
-
-    .project-placeholder p {
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-
-    .project-card-div {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.6rem;
-      transition: border-color 0.2s, transform 0.2s;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .project-card-div:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    .project-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.2rem;
-    }
-
-    .project-stack-tag {
-      font-size: 0.75rem;
-      padding: 0.2rem 0.55rem;
-      border-radius: 4px;
-      background: rgba(129,140,248,0.08);
-      border: 1px solid rgba(129,140,248,0.2);
-      color: var(--accent2);
-    }
-
-    .project-actions {
-      display: flex;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-      margin-top: auto;
-      padding-top: 0.4rem;
-    }
-
-    .project-btn {
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: all 0.2s;
-    }
-
-    .project-btn-primary {
-      background: rgba(56, 189, 248, 0.12);
-      color: var(--accent);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-    }
-
-    .project-btn-primary:hover {
-      background: rgba(56, 189, 248, 0.22);
-      border-color: var(--accent);
-    }
-
-    .project-btn-secondary {
-      background: rgba(255,255,255,0.04);
-      color: var(--muted);
-      border: 1px solid var(--border);
-    }
-
-    .project-btn-secondary:hover {
-      border-color: var(--accent2);
-      color: var(--accent2);
-    }
-
-    /* CONTACT */
-    #contact {
-      background: var(--bg2);
-      border-top: 1px solid var(--border);
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-
-    .contact-text h2 {
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin-bottom: 0.8rem;
-    }
-
-    .contact-text p {
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.7;
-    }
-
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .contact-link {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem 1.2rem;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      text-decoration: none;
-      color: var(--text);
-      transition: border-color 0.2s;
-    }
-
-    .contact-link:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .contact-link-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 6px;
-      background: rgba(56, 189, 248, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-
-    .contact-link-label {
-      font-size: 0.75rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .contact-link-value {
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
-
-    /* FOOTER */
-    footer {
-      padding: 2rem;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.85rem;
-      border-top: 1px solid var(--border);
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 680px) {
-      .about-grid, .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font: 600 0.98rem var(--body);
+      padding: 0.8rem 1.35rem; border-radius: 999px; text-decoration: none;
+      border: 1.5px solid var(--ink); transition: background .15s, color .15s, border-color .15s;
+    }
+    .btn-solid { background: var(--ink); color: var(--paper); }
+    .btn-solid:hover { background: var(--signal); border-color: var(--signal); color: #fff; }
+    .btn-line:hover { border-color: var(--signal); color: var(--signal); }
+
+    /* Cluster visual */
+    .cluster {
+      margin-top: clamp(40px, 6vw, 72px);
+      background: var(--ink);
+      border-radius: 18px;
+      padding: clamp(14px, 2vw, 22px);
+      color: #DCE2EE;
+    }
+    .cluster canvas { display: block; width: 100%; height: auto; cursor: crosshair; border-radius: 8px; }
+    .cluster-bar {
+      display: flex; flex-wrap: wrap; gap: 0.6rem 1.6rem; align-items: center; justify-content: space-between;
+      font-size: 0.88rem; padding: 12px 4px 2px; color: #AAB5CA;
+    }
+    .cluster-bar .stats { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; font-variant-numeric: tabular-nums; }
+    .cluster-bar b { color: #fff; font-weight: 600; }
+    .key { display: inline-flex; align-items: center; gap: 0.4rem; }
+    .key i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+
+    /* ---------- SECTIONS ---------- */
+    section.block { padding: clamp(64px, 9vw, 120px) 0; border-top: 1px solid var(--rule); }
+    .block-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: clamp(20px, 4vw, 64px); }
+    .block-head h2 {
+      font-family: var(--display); font-weight: 700;
+      font-size: clamp(1.9rem, 3.6vw, 2.8rem); line-height: 1.02; letter-spacing: -0.03em;
+      font-variation-settings: "wdth" 96;
+    }
+    .prose p { max-width: 62ch; margin-bottom: 1.1rem; color: var(--ink-soft); }
+    .prose p.lead { color: var(--ink); font-size: 1.22rem; line-height: 1.5; }
+
+    /* About: what I'm good at */
+    .strengths { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin-top: 2.4rem; border-top: 2px solid var(--ink); }
+    .strength { padding: 1.3rem 1.4rem 0 0; }
+    .strength + .strength { padding-left: 1.4rem; border-left: 1px solid var(--rule); }
+    .strength h3 { font-family: var(--display); font-weight: 650; font-size: 1.18rem; letter-spacing: -0.01em; margin-bottom: 0.4rem; }
+    .strength p { color: var(--ink-soft); font-size: 0.97rem; }
+    .strength a { color: var(--signal); font-weight: 600; text-decoration: none; white-space: nowrap; }
+    .strength a:hover { text-decoration: underline; }
+    .role .sub { margin-top: 1.3rem; padding-top: 1.1rem; border-top: 1px dashed var(--rule); }
+    .role .sub h4 { font-family: var(--display); font-weight: 650; font-size: 1.12rem; margin-bottom: 0.3rem; }
+
+    /* Impact */
+    .impact { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 14px; overflow: hidden; margin-top: 2.6rem; }
+    .impact div { background: var(--paper); padding: 1.4rem 1.3rem; }
+    .impact strong { display: block; font-family: var(--display); font-weight: 750; font-size: clamp(2rem, 3.4vw, 2.7rem); letter-spacing: -0.03em; line-height: 1; margin-bottom: 0.5rem; }
+    .impact span { color: var(--ink-soft); font-size: 0.93rem; }
+    .todo { background: repeating-linear-gradient(45deg, #FFF4E0, #FFF4E0 8px, #FFEACC 8px, #FFEACC 16px) !important; }
+
+    /* Experience */
+    .roles { list-style: none; }
+    .role { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: clamp(16px, 3vw, 40px); padding: 1.8rem 0; border-bottom: 1px solid var(--rule); }
+    .role:first-child { padding-top: 0; }
+    .role-when { font-size: 0.92rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; padding-top: 0.3rem; }
+    .role-when .now { display: inline-block; margin-top: 0.4rem; font-size: 0.8rem; font-weight: 600; color: var(--teal); }
+    .role h3 { font-family: var(--display); font-weight: 700; font-size: 1.45rem; letter-spacing: -0.02em; line-height: 1.15; }
+    .role .org { color: var(--signal); font-weight: 600; margin: 0.15rem 0 0.7rem; }
+    .role p { color: var(--ink-soft); max-width: 64ch; }
+    .role ul { margin: 0.6rem 0 0 1.1rem; color: var(--ink-soft); max-width: 64ch; }
+    .role li { margin-bottom: 0.3rem; }
+
+    /* How I work */
+    .steps { list-style: none; counter-reset: step; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 2.6rem; border-top: 2px solid var(--ink); }
+    .steps li { counter-increment: step; padding: 1.3rem 1.4rem 0 0; }
+    .steps li + li { padding-left: 1.4rem; border-left: 1px solid var(--rule); }
+    .steps li::before { content: counter(step); display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--signal); color: #fff; font: 600 0.85rem var(--body); margin-bottom: 0.9rem; }
+    .steps h3 { font-family: var(--display); font-weight: 650; font-size: 1.18rem; letter-spacing: -0.01em; margin-bottom: 0.4rem; }
+    .steps p { color: var(--ink-soft); font-size: 0.97rem; }
+    .dots { display: none; }
+    .role .sub .org { margin: 0 0 0.6rem; }
+
+    /* Proof */
+    .proof { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: clamp(36px, 5vw, 56px); border-top: 2px solid var(--ink); }
+    .proof div { padding: 1.3rem 1.6rem 0 0; }
+    .proof div + div { padding-left: 1.6rem; border-left: 1px solid var(--rule); }
+    .proof dt { font-family: var(--display); font-weight: 800; font-variation-settings: "wdth" 94; font-size: clamp(2.8rem, 6vw, 4.6rem); line-height: 0.95; letter-spacing: -0.04em; color: var(--signal); }
+    .proof dd { margin-top: 0.5rem; color: var(--ink-soft); max-width: 30ch; }
+
+    /* Client work */
+    .filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2.4rem; }
+    .filters button { font: 500 0.92rem var(--body); color: var(--ink); background: transparent; border: 1.5px solid var(--rule); border-radius: 999px; padding: 0.45rem 0.95rem; cursor: pointer; }
+    .filters button small { color: var(--ink-soft); font-size: 0.82rem; margin-left: 0.2rem; }
+    .filters button:hover { border-color: var(--ink); }
+    .filters button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+    .filters button[aria-pressed="true"] small { color: #AAB5CA; }
+    .case[hidden] { display: none; }
+    .case-top { display: flex; justify-content: space-between; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+    .env { display: flex; gap: 0.3rem; }
+    .env span { font-size: 0.76rem; font-weight: 600; padding: 0.12rem 0.5rem; border-radius: 6px; background: var(--paper-2); color: var(--ink-soft); }
+    .cases { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 1.4rem; }
+    .case { background: #fff; border: 1px solid var(--rule); border-radius: 14px; padding: 1.5rem 1.5rem 1.4rem; display: flex; flex-direction: column; gap: 0.7rem; }
+    .case-sector { font-size: 0.88rem; color: var(--ink-soft); }
+    .case h3 { font-family: var(--display); font-weight: 650; font-size: 1.25rem; letter-spacing: -0.015em; line-height: 1.2; }
+    .case p { color: var(--ink-soft); font-size: 0.97rem; }
+    .case .result { margin-top: auto; padding-top: 0.8rem; border-top: 1px dashed var(--rule); font-weight: 600; color: var(--ink); font-size: 0.97rem; }
+    .case .result::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: var(--teal); margin-right: 0.55rem; vertical-align: 1px; }
+    .note { margin-top: 1.4rem; font-size: 0.9rem; color: var(--ink-soft); }
+
+    /* Ventures */
+    .venture { margin-top: 2.6rem; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); background: var(--ink); color: #E8ECF4; border-radius: 18px; overflow: hidden; }
+    .venture-main { padding: clamp(24px, 4vw, 44px); }
+    .venture-main h3 { display: flex; align-items: center; gap: 0.7rem; font-family: var(--display); font-weight: 800; font-size: clamp(2.2rem, 4.5vw, 3.4rem); letter-spacing: -0.035em; line-height: 1; margin-bottom: 0.9rem; }
+    .venture-mark { width: clamp(30px, 3.2vw, 40px); height: auto; flex: none; opacity: 0.9; }
+    .venture-title { font-family: var(--display); font-weight: 700; font-size: 1.3rem; color: #fff; margin-bottom: 0.2rem; }
+    .venture-main p { color: #B9C3D6; max-width: 46ch; margin-bottom: 1.4rem; }
+    .venture-main .btn { border-color: #fff; color: #fff; }
+    .venture-main .btn:hover { background: #fff; color: var(--ink); }
+    .venture-roles { background: #1B2B4B; padding: clamp(24px, 4vw, 44px); display: flex; flex-direction: column; justify-content: center; gap: 1.1rem; }
+    .venture-roles div { border-left: 3px solid var(--amber); padding-left: 1rem; }
+    .venture-roles strong { display: block; font-family: var(--display); font-size: 1.2rem; font-weight: 650; color: #fff; }
+    .venture-roles span { color: #AAB5CA; font-size: 0.94rem; }
+
+    /* Skills */
+    .skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem 2.4rem; margin-top: 2.6rem; }
+    .skills h3 { font-family: var(--display); font-weight: 650; font-size: 1.08rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--ink); margin-bottom: 0.7rem; }
+    .skills ul { list-style: none; color: var(--ink-soft); }
+    .skills li { padding: 0.28rem 0; font-size: 0.97rem; }
+
+    .creds { margin-top: 2.6rem; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; }
+    .creds div { background: var(--paper-2); padding: 1rem 1.2rem; }
+    .creds dt { font-size: 0.85rem; color: var(--ink-soft); margin-bottom: 0.2rem; }
+    .creds dd { font-weight: 600; font-size: 0.97rem; }
+
+    /* Contact */
+    .contact-note { margin-top: 1rem; color: var(--ink-soft); max-width: 30ch; }
+    .contact-icons-desk { display: flex; gap: 12px; align-self: start; }
+    .contact-icons-desk a { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--ink); border: 1.5px solid var(--rule); transition: background .15s, color .15s, border-color .15s; }
+    .contact-icons-desk a:hover { background: var(--ink); border-color: var(--ink); color: #fff; }
+    .contact-icons-desk svg { width: 22px; height: 22px; }
+    .contact-icons, .contact-m-title { display: none; }
+    @media (max-width: 899px) {
+      section.block.contact { padding: 36px 0 8px; }
+      .contact .block-head { display: none; }
+      .contact-m-title { display: block; text-align: center; font-family: var(--display); font-weight: 700; font-size: 1.5rem; letter-spacing: -0.02em; margin-bottom: 16px; }
+      .contact-icons {
+        display: flex; justify-content: center; gap: 6px; width: max-content; margin: 0 auto;
+        background: var(--ink); padding: 6px; border-radius: 999px;
       }
-
-      .nav-links { display: none; }
-
-      h1 { font-size: 2.6rem; }
+      .contact-icons a { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; background: rgba(255, 255, 255, 0.08); }
+      .contact-icons a:active { background: var(--signal); }
+      footer { padding-bottom: 28px; }
     }
 
-    /* ANIMATIONS */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    footer { padding: 28px 0; font-size: 0.88rem; color: var(--ink-soft); }
+    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+
+    /* Quick contact bar (mobile only) */
+    .quick { display: none; }
+    @media (max-width: 899px) {
+      .quick {
+        display: flex; gap: 6px;
+        position: fixed; left: 50%; bottom: max(14px, env(safe-area-inset-bottom));
+        transform: translate(-50%, 140%); transition: transform .28s ease;
+        background: var(--ink); padding: 6px; border-radius: 999px;
+        box-shadow: 0 10px 30px rgba(19, 32, 58, 0.28); z-index: 60;
+      }
+      .quick.on { transform: translate(-50%, 0); }
+      .quick a {
+        width: 48px; height: 48px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        color: #fff; background: rgba(255, 255, 255, 0.08);
+      }
+      .quick a:active { background: var(--signal); }
     }
+    @media (max-width: 899px) and (prefers-reduced-motion: reduce) { .quick { transition: none; } }
 
-    .hero-inner > * {
-      animation: fadeUp 0.6s ease forwards;
-      opacity: 0;
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 900px) {
+      .block-head, .venture { grid-template-columns: 1fr; }
+      .cases { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .strengths { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .steps li, .steps li + li { padding: 1.2rem 1rem 1.2rem 0; border-left: 0; border-bottom: 1px solid var(--rule); }
+      .strength, .strength + .strength { padding: 1.1rem 0; border-left: 0; border-bottom: 1px solid var(--rule); }
     }
-
-    .hero-eyebrow { animation-delay: 0.1s; }
-    h1 { animation-delay: 0.2s; }
-    .hero-tagline { animation-delay: 0.3s; }
-    .hero-cta { animation-delay: 0.4s; }
-
-    /* CURSOR BLINK */
-    .blink {
-      display: inline-block;
-      width: 3px;
-      height: 0.9em;
-      background: var(--accent);
-      margin-left: 4px;
-      vertical-align: middle;
-      animation: blink 1s step-end infinite;
-    }
-
-    @keyframes blink {
-      50% { opacity: 0; }
+    @media (max-width: 640px) {
+      .nav-links li:not(:last-child) { display: none; }
+      .skills { grid-template-columns: 1fr; }
+      .creds { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .cases {
+        display: flex; gap: var(--gutter); overflow-x: auto; scroll-snap-type: x mandatory;
+        margin: 1.2rem calc(-1 * var(--gutter)) 0; padding: 2px var(--gutter) 6px;
+        scroll-padding: 0 var(--gutter); scrollbar-width: none; -webkit-overflow-scrolling: touch;
+      }
+      .cases::-webkit-scrollbar { display: none; }
+      .case { flex: 0 0 86%; scroll-snap-align: start; }
+      .dots { display: flex; justify-content: center; gap: 4px; margin-top: 1rem; }
+      .dots button { width: 22px; height: 22px; padding: 0; border: 0; background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+      .dots button::before { content: ""; width: 7px; height: 7px; border-radius: 999px; background: var(--rule); transition: width .25s ease, background .25s ease; }
+      .dots button[aria-selected="true"]::before { width: 20px; background: var(--ink); }
+      .dots button[aria-selected="true"] { width: 32px; }
+      .filters { flex-wrap: nowrap; overflow-x: auto; margin: 2rem calc(-1 * var(--gutter)) 0; padding: 0 var(--gutter); scrollbar-width: none; }
+      .filters::-webkit-scrollbar { display: none; }
+      .filters button { flex: 0 0 auto; }
+      .proof { grid-template-columns: 1fr; }
+      .proof div, .proof div + div { padding: 1.1rem 0; border-left: 0; border-bottom: 1px solid var(--rule); }
+      .role { grid-template-columns: 1fr; gap: 0.4rem; }
+      .cluster-bar .legend { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <span class="nav-logo">EE</span>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+  <nav aria-label="Main">
+    <div class="wrap">
+      <a href="#top" class="mark">Elad Edi<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#clients">Client work</a></li>
+        <li><a href="#ventures">Ventures</a></li>
+        <li><a href="#contact" class="nav-cta">Get in touch</a></li>
+      </ul>
+    </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-eyebrow">Customer-Facing Technologist</div>
-      <h1>Elad Edi<span class="blink"></span></h1>
-      <p class="hero-tagline">
-        I sit at the intersection of <strong>customer, product, engineering, and business</strong>.
-        My expertise isn't one specific technology — it's the ability to see the full picture,
-        ask the right questions, and connect the dots across disciplines.
-      </p>
-      <div class="hero-cta">
-        <a href="#about" class="btn btn-primary">Get to know me</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="container">
-      <div class="section-label">About</div>
-      <div class="section-title">Who I am</div>
-      <div class="about-grid">
-        <div class="about-text">
-          <p>
-            <strong>Engineer by nature — and by profession.</strong>
-          </p>
-          <p>
-            I solve hard problems. The kind that live at the intersection of systems, people, and scale.
-            My edge isn't deep expertise in one specific domain — it's the ability to <strong>see the full picture fast</strong>,
-            ask the right questions, and make complex things actually move.
-          </p>
-          <p>
-            I work in HPC infrastructure, sitting at the boundary between customers, product, and engineering.
-            I can be in a C-level conversation and a hands-on technical debug on the same day —
-            and make both feel natural.
-          </p>
-          <p>
-            Outside work: climbing walls, snowboards, ninja warrior training, and side projects
-            that were supposed to take a weekend. They never take a weekend.
-            Same curiosity, different problems.
-          </p>
-        </div>
-
-        <div class="about-facts">
-          <div class="fact-card">
-            <div class="fact-icon">🎓</div>
-            <div>
-              <div class="fact-label">Education</div>
-              <div class="fact-value">BSc Electrical & Electronics Engineering, Ort Braude College</div>
+  <header class="hero" id="top">
+    <div class="wrap">
+      <div class="hero-grid">
+          <h1>Elad Edi</h1>
+        <figure class="portrait">
+          <img src="elad-speaking.jpg" alt="Elad Edi presenting a live technical session on stage" width="789" height="860" />
+          <figcaption>Technical session, ATC 2025</figcaption>
+        </figure>
+          <div class="hero-side">
+            <p class="pitch">Engineer's depth. Business instinct. Founder's ownership.</p>
+            <p class="intro">Presales Consultant Engineer at Siemens, formerly Technical Account Manager at Altair Engineering. I work with enterprise HPC customers from the first discovery conversation to a system running in production. I understand the business impact, and I see the technical gap that stands in the way.</p>
+            <div class="actions">
+              <a class="btn btn-solid" href="mailto:eladedi11391@gmail.com">Email me</a>
+              <a class="btn btn-line" href="https://www.linkedin.com/in/elad-edi" target="_blank" rel="noopener">LinkedIn</a>
             </div>
           </div>
-          <div class="fact-card">
-            <div class="fact-icon">💼</div>
-            <div>
-              <div class="fact-label">Current Role</div>
-              <div class="fact-value">HPC Technical Account Manager, Altair Engineering (Siemens)</div>
-            </div>
+      </div>
+
+      <figure class="cluster" aria-label="Animated illustration of a job scheduler placing jobs on cluster nodes">
+        <canvas id="grid" width="1120" height="200"></canvas>
+        <figcaption class="cluster-bar">
+          <span class="stats" aria-live="off">
+            <span>Nodes <b id="s-nodes">0</b></span>
+            <span>Jobs running <b id="s-jobs">0</b></span>
+            <span>Utilization <b id="s-util">0%</b></span>
+          </span>
+          <span class="legend stats">
+            <span class="key"><i style="background:var(--signal)"></i>Scheduled</span>
+            <span class="key"><i style="background:var(--amber)"></i>Your job</span>
+            <span>Click the cluster to submit one</span>
+          </span>
+        </figcaption>
+      </figure>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ABOUT -->
+    <section class="block" id="about">
+      <div class="wrap">
+        <div class="block-head">
+          <h2>How I work</h2>
+          <div class="prose">
+            <p class="lead">Customers rarely come with a purely technical problem. They come with a business problem that shows up as technical pain, running on their infrastructure.</p>
+            <p>My job is to find that problem, understand what it costs them, and turn it into a measurable technical solution that both business and engineering stakeholders understand: higher ROI for the business, less friction for the engineers.</p>
           </div>
-          <div class="fact-card">
-            <div class="fact-icon">🧗</div>
-            <div>
-              <div class="fact-label">Outside Work</div>
-              <div class="fact-value">Sport Climbing · Ninja Warrior · Snowboarding · Building things</div>
-            </div>
+        </div>
+
+        <ol class="steps">
+          <li>
+            <h3>Find the real pain</h3>
+            <p>What's slow, blocked or breaking, and why.</p>
+          </li>
+          <li>
+            <h3>Name the business gap</h3>
+            <p>Find the real business costs.</p>
+          </li>
+          <li>
+            <h3>Design the answer</h3>
+            <p>Architecture, PoC and a rollout that fits.</p>
+          </li>
+          <li>
+            <h3>Bring everyone along</h3>
+            <p>Biz &amp; Dev aligned, through to production.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="block" id="experience">
+      <div class="wrap">
+        <div class="block-head">
+          <h2>Experience</h2>
+          <ol class="roles">
+            <li class="role">
+              <div class="role-when">Jul 2022 to now<br /><span class="now">Current</span></div>
+              <div>
+                <h3>Presales Consultant Engineer</h3>
+                <div class="org">Siemens Digital Industries Software</div>
+                <div class="sub">
+                  <h4>HPC Technical Account Manager</h4>
+                  <div class="org">Altair Engineering</div>
+                </div>
+                <ul>
+                  <li>Own the technical relationship with accounts from global enterprises to startups, across on-premises, cloud and hybrid HPC environments.</li>
+                  <li>Lead discovery, solution design, demos and proofs of concept, from the first conversation to production.</li>
+                  <li>Specialize in HPC workload management and resource scheduling with the Accelerator suite, PBS and Grid Engine.</li>
+                  <li>Trusted adviser to IT, CAD, DevOps and engineering teams, mainly in VLSI, and to their C-level leadership.</li>
+                  <li>Capture customer needs as RFEs and share field insight with product, sales, marketing and R&amp;D.</li>
+                </ul>
+              </div>
+            </li>
+            <li class="role">
+              <div class="role-when">Jul 2021 to Jul 2022</div>
+              <div>
+                <h3>Application Engineer</h3>
+                <div class="org">Nano Dimension</div>
+                <ul>
+                  <li>Led customer Alpha and Beta programs, validating new products in real-world use and feeding results to R&amp;D and Product.</li>
+                  <li>Ran product demos, technical evaluations, customer training and product introductions.</li>
+                  <li>Hands-on validation, integration and troubleshooting, working with customers, Sales and R&amp;D to clear technical blockers.</li>
+                  <li>Turned field issues and customer use cases into concrete product and engineering improvements.</li>
+                </ul>
+              </div>
+            </li>
+            <li class="role">
+              <div class="role-when">Feb 2017 to Oct 2019</div>
+              <div>
+                <h3>Board Designer</h3>
+                <div class="org">Intel</div>
+                <ul>
+                  <li>Designed boards for Intel Reference Validation Platforms (RVPs), from requirements and schematics through bring-up and validation.</li>
+                  <li>Led hands-on bring-up and debug: first power-on, clocks, USB, SPI, I²C and UART interfaces, rework and workarounds.</li>
+                  <li>Worked with layout, signal integrity, firmware, validation and architecture teams, and with vendors, to close board and system issues.</li>
+                  <li>Presented design decisions, risks, validation results and trade-offs at PDR and CDR reviews.</li>
+                </ul>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIENT WORK -->
+    <section class="block" id="clients">
+      <div class="wrap">
+        <div class="block-head">
+          <h2>Client work</h2>
+          <div class="prose">
+            <p class="lead">Over my career I've worked with more than 50 customers, from startups to global enterprises, across on-premises, cloud and hybrid environments and a wide range of industries.</p>
+            <p>Here are some of the projects I've led.</p>
+          </div>
+        </div>
+
+        <div class="filters" role="group" aria-label="Filter clients by industry"><button type="button" data-f="all" aria-pressed="true">All <small>14</small></button><button type="button" data-f="semi" aria-pressed="false">Semiconductors <small>7</small></button><button type="button" data-f="def" aria-pressed="false">Defense and aerospace <small>5</small></button><button type="button" data-f="res" aria-pressed="false">Academia and research <small>2</small></button></div>
+        <div class="cases" id="cases" tabindex="0" aria-label="Client projects">
+          <article class="case" data-k="semi">
+            <div class="case-top"><span class="case-sector">Semiconductors</span><span class="env"><span>On-prem</span></span></div>
+            <h3>N.S</h3>
+            <p>Owned end-to-end technical delivery of a ~12,000-core on-premises HPC environment, from discovery and PoC to production, integrating FlowTracer for VLSI design-flow management and Accelerator for workload scheduling and resource orchestration.</p>
+            <div class="result">~12,000 cores</div>
+          </article>
+          <article class="case" data-k="semi">
+            <div class="case-top"><span class="case-sector">Semiconductors</span><span class="env"><span>On-prem</span></span></div>
+            <h3>C</h3>
+            <p>Led deployments, upgrades and HW/EDA resource optimization across a ~3,500-core on-premises HPC environment, expanding adoption of Accelerator, HERO and License Monitor while supporting over 100% growth in compute capacity and account revenue.</p>
+            <div class="result">100%+ capacity and revenue growth</div>
+          </article>
+          <article class="case" data-k="semi">
+            <div class="case-top"><span class="case-sector">Semiconductors</span><span class="env"><span>On-prem</span><span>AWS</span><span>Hybrid</span></span></div>
+            <h3>A.L</h3>
+            <p>Scaled and supported enterprise HPC infrastructure across on-premises, AWS and hybrid environments, implementing cloud bursting with Accelerator and License Monitor while contributing to over 300% compute capacity growth.</p>
+            <div class="result">300%+ compute growth</div>
+          </article>
+          <article class="case" data-k="semi">
+            <div class="case-top"><span class="case-sector">Semiconductors</span><span class="env"><span>On-prem</span></span></div>
+            <h3>H</h3>
+            <p>Supported upgrades and expansion of a ~10,000-core on-premises HPC environment, providing hands-on troubleshooting, on-site technical enablement and workload-management optimization.</p>
+            <div class="result">~10,000 cores</div>
+          </article>
+          <article class="case" data-k="semi">
+            <div class="case-top"><span class="case-sector">Semiconductors</span><span class="env"><span>On-prem</span></span></div>
+            <h3>X.L</h3>
+            <p>Led on-premises HPC deployment and migration from SGE to Accelerator, including workload-flow conversion, scheduling configuration, user enablement and production adoption.</p>
+            <div class="result">SGE to Accelerator migration</div>
+          </article>
+          <article class="case" data-k="semi">
+            <div class="case-top"><span class="case-sector">Semiconductors</span><span class="env"><span>On-prem</span></span></div>
+            <h3>N.R</h3>
+            <p>Delivered hands-on deployments, upgrades, configuration and ongoing technical support for on-premises HPC infrastructure, supporting capacity expansion and evolving engineering workloads.</p>
+            <div class="result">Capacity expansion</div>
+          </article>
+          <article class="case" data-k="semi">
+            <div class="case-top"><span class="case-sector">Semiconductors</span><span class="env"><span>On-prem</span><span>AWS</span><span>Hybrid</span></span></div>
+            <h3>E.L</h3>
+            <p>Led HPC solution delivery across on-premises and AWS infrastructure, from PoC to production deployment, including hybrid cloud bursting integration, user enablement and technical support.</p>
+            <div class="result">PoC to production</div>
+          </article>
+          <article class="case" data-k="def">
+            <div class="case-top"><span class="case-sector">Defense and aerospace</span><span class="env"><span>On-prem</span></span></div>
+            <h3>E.S</h3>
+            <p>Architected and implemented a Kafka and Panopticon-based operational visualization solution for hybrid HPC infrastructure, alongside hands-on deployments, scaling and VLSI workload orchestration.</p>
+            <div class="result">Solution architect</div>
+          </article>
+          <article class="case" data-k="def">
+            <div class="case-top"><span class="case-sector">Defense and aerospace</span><span class="env"><span>On-prem</span></span></div>
+            <h3>S</h3>
+            <p>Co-architected an on-premises HPC modernization project, integrating new hardware, OS infrastructure, Accelerator, License Monitor and fair-share scheduling for VLSI workloads.</p>
+            <div class="result">Co-architect</div>
+          </article>
+          <article class="case" data-k="def">
+            <div class="case-top"><span class="case-sector">Defense and aerospace</span><span class="env"><span>On-prem</span></span></div>
+            <h3>R</h3>
+            <p>Deployed and supported on-premises GPU compute infrastructure using Grid Engine, performing troubleshooting, upgrades and technical escalations in secure HPC environments.</p>
+            <div class="result">GPU compute</div>
+          </article>
+          <article class="case" data-k="def">
+            <div class="case-top"><span class="case-sector">Defense and aerospace</span><span class="env"><span>On-prem</span></span></div>
+            <h3>I</h3>
+            <p>Supported on-premises PBS-based HPC workload orchestration, infrastructure upgrades, hands-on troubleshooting and coordination with global engineering specialists.</p>
+            <div class="result">PBS orchestration</div>
+          </article>
+          <article class="case" data-k="def">
+            <div class="case-top"><span class="case-sector">Defense and aerospace</span><span class="env"><span>On-prem</span></span></div>
+            <h3>L.D</h3>
+            <p>Deployed and configured an on-premises HPC cluster using Accelerator, integrating workload scheduling with existing compute infrastructure.</p>
+            <div class="result">New cluster deployment</div>
+          </article>
+          <article class="case" data-k="res">
+            <div class="case-top"><span class="case-sector">Academia and research</span><span class="env"><span>On-prem</span></span></div>
+            <h3>W.I</h3>
+            <p>Supported on-premises PBS workload orchestration and led requirements definition, deployment and technical support of InsightPro for HPC cluster management.</p>
+            <div class="result">Requirements to deployment</div>
+          </article>
+          <article class="case" data-k="res">
+            <div class="case-top"><span class="case-sector">Academia and research</span><span class="env"><span>On-prem</span></span></div>
+            <h3>T</h3>
+            <p>Provided technical support for on-premises PBS-based HPC infrastructure, coordinating complex troubleshooting and escalations with global engineering specialists.</p>
+            <div class="result">Complex escalations</div>
+          </article>
+        </div>
+        <div class="dots" id="case-dots" role="tablist" aria-label="Choose project"></div>
+      </div>
+    </section>
+
+    <!-- VENTURES -->
+    <section class="block" id="ventures">
+      <div class="wrap">
+        <div class="block-head">
+          <h2>Ventures</h2>
+          <div class="prose">
+            <p class="lead">Entrepreneurship outside my day job.</p>
+          </div>
+        </div>
+
+        <div class="venture">
+          <div class="venture-main">
+            <h3><img class="venture-mark" src="alternabe-mark.svg" alt="" width="40" height="40" />AlternaBe</h3>
+            <p>Israel's hub for natural and complementary medicine. Patients find practitioners, book treatments and manage their care journey in one place. Practitioners get a complete operating system for their clinic. Built and run by two founders.</p>
+            <a class="btn" href="https://alternabe.co.il" target="_blank" rel="noopener">Visit alternabe.co.il</a>
+          </div>
+          <div class="venture-roles">
+            <p class="venture-title">Co-founder &amp; CEO</p>
+            <div><strong>Business</strong><span>Business model, pricing and go-to-market.</span></div>
+            <div><strong>Product</strong><span>Own the roadmap and UX, from the patient journey to clinic tools.</span></div>
+            <div><strong>AI-native execution</strong><span>Build, ship and run the company with AI tools, from code to marketing and support.</span></div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <div class="container">
-      <div class="section-label">Experience</div>
-      <div class="section-title">Where I've been</div>
-      <div class="timeline">
-
-        <div class="timeline-item">
-          <div class="timeline-meta">
-            <span class="timeline-company">Altair Engineering</span>
-            <span class="timeline-badge">Acquired by Siemens</span>
-            <span class="timeline-badge" style="background:rgba(63,185,80,0.1);color:var(--green);border-color:rgba(63,185,80,0.2)">Current</span>
-          </div>
-          <div class="timeline-role">HPC Technical Account Manager</div>
-          <div class="timeline-period">Jul 2022 – Present · Promoted from Application Engineer</div>
-          <div class="timeline-desc">
-            Specializing in HPC scheduling and resource management — PBS Professional, Slurm, Grid Engine, Accelerator.
-            I work at the boundary between customers and product: translating field insights and customer pain into
-            structured product feedback, RFEs, and prioritization inputs. I lead large-scale migration and upgrade
-            projects across complex HPC environments, engage directly with C-level executives and front-line
-            engineers, and provide input into product decisions around scalability, observability, and
-            scheduler behavior.
+    <!-- SKILLS -->
+    <section class="block" id="skills">
+      <div class="wrap">
+        <div class="block-head">
+          <h2>Toolkit</h2>
+          <div class="prose">
+            <p class="lead">The technical ground I stand on, and the way I work with people.</p>
           </div>
         </div>
-
-        <div class="timeline-item">
-          <div class="timeline-meta">
-            <span class="timeline-company">Nano-Dimension</span>
-          </div>
-          <div class="timeline-role">Application Engineer</div>
-          <div class="timeline-period">Jul 2021 – Jul 2022</div>
-          <div class="timeline-desc">
-            Bridged customers, R&D, and Sales in a fast-moving deep-tech environment. Led Alpha/Beta programs,
-            served as the technical focal point for product issues, and supported go-to-market readiness
-            through demos, training, and enablement materials. Turned customer use cases into
-            actionable product feedback.
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-meta">
-            <span class="timeline-company">Intel Corporation</span>
-          </div>
-          <div class="timeline-role">Board Designer</div>
-          <div class="timeline-period">Feb 2017 – Oct 2019</div>
-          <div class="timeline-desc">
-            Led end-to-end board development from architecture definition through validation, balancing
-            performance, cost, and reliability requirements. Hands-on design using Altium and Cadence.
-            Worked with internal customers, architects, and component vendors. Presented technical
-            risks and design trade-offs at PDR/CDR reviews.
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <div class="container">
-      <div class="section-label">Skills</div>
-      <div class="section-title">What I work with</div>
-      <div class="skills-grid">
-
-        <div class="skill-group">
-          <div class="skill-group-title">HPC & Infrastructure</div>
-          <div class="skill-tags">
-            <span class="skill-tag">PBS Professional</span>
-            <span class="skill-tag">Slurm</span>
-            <span class="skill-tag">Grid Engine</span>
-            <span class="skill-tag">Accelerator</span>
-            <span class="skill-tag">Workload Management</span>
-            <span class="skill-tag">Distributed Compute</span>
-            <span class="skill-tag">GPU Environments</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <div class="skill-group-title">Linux & Systems</div>
-          <div class="skill-tags">
-            <span class="skill-tag">Linux</span>
-            <span class="skill-tag">Bash / CSH</span>
-            <span class="skill-tag">C / C++</span>
-            <span class="skill-tag">Python</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <div class="skill-group-title">Observability & Monitoring</div>
-          <div class="skill-tags">
-            <span class="skill-tag">Grafana</span>
-            <span class="skill-tag">Prometheus</span>
-            <span class="skill-tag">Logging & Audit Analysis</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <div class="skill-group-title">Tools & Platforms</div>
-          <div class="skill-tags">
-            <span class="skill-tag">Salesforce (CRM)</span>
-            <span class="skill-tag">JIRA</span>
-            <span class="skill-tag">ServiceNow</span>
-            <span class="skill-tag">Slack</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <div class="skill-group-title">Soft Skills</div>
-          <div class="skill-tags">
-            <span class="skill-tag">Systems Thinking</span>
-            <span class="skill-tag">C-Level Communication</span>
-            <span class="skill-tag">Customer Advisory</span>
-            <span class="skill-tag">Cross-functional Collaboration</span>
-            <span class="skill-tag">Technical Translation</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="container">
-      <div class="section-label">Projects</div>
-      <div class="section-title">Things I build</div>
-      <p style="color:var(--muted);font-size:1.05rem;line-height:1.8;max-width:600px;margin-bottom:3rem;">
-        In my spare time I build personal tools and end-to-end experiments — mostly at the intersection of AI and infrastructure.
-        A problem bothers me, I build something. More projects landing here soon.
-      </p>
-      <div class="projects-grid">
-
-        <!-- SLATE -->
-        <div class="project-card-div">
-          <div class="project-card-top">
-            <div class="project-icon">🗂️</div>
-            <span class="project-status status-live">Live</span>
+        <div class="skills">
+          <div>
+            <h3>Presales and customers</h3>
+            <ul><li>Solution architecture</li><li>Technical workshops and demos</li><li>Pre- and post-sales support</li><li>MEDDIC</li><li>Conferences &amp; tech days</li></ul>
           </div>
           <div>
-            <div class="project-name">Slate</div>
-            <div class="project-desc">
-              A personal productivity app I built from scratch — Hebrew-first Kanban boards + Notes,
-              live-synced across web and Android. Drag-and-drop cards, subtasks, sharing, and an AI assistant
-              wired to your boards. The kind of tool that was "supposed to take a weekend."
-            </div>
+            <h3>Product and leadership</h3>
+            <ul><li>Product feedback and RFEs</li><li>PRDs, roadmaps and user stories</li><li>Team leadership and mentoring</li><li>Salesforce, Jira, Monday, ServiceNow</li></ul>
           </div>
-          <div class="project-stack">
-            <span class="project-stack-tag">React 19</span>
-            <span class="project-stack-tag">TypeScript</span>
-            <span class="project-stack-tag">Firebase</span>
-            <span class="project-stack-tag">Android (Kotlin)</span>
-            <span class="project-stack-tag">Gemini AI</span>
+          <div>
+            <h3>HPC and infrastructure</h3>
+            <ul><li>Workload scheduling</li><li>EDA flows and licensing</li><li>Secure and air-gapped environments</li><li>Distributed systems and hybrid cloud</li><li>Logging and audit analysis</li></ul>
           </div>
-          <div class="project-actions">
-            <a href="https://slate-b245a.web.app" target="_blank" class="project-btn project-btn-primary">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-              Open Web App
-            </a>
-            <a href="https://github.com/eladedi/slate/releases/latest" target="_blank" class="project-btn project-btn-secondary" title="Download latest Android APK">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Android APK
-            </a>
+          <div>
+            <h3>AI</h3>
+            <ul><li>n8n, Make</li><li>LLM integration</li><li>AI agents and agentic workflows</li><li>Prompt engineering</li><li>MCP servers, skills and connectors</li><li>API integrations</li></ul>
+          </div>
+          <div>
+            <h3>Cloud and code</h3>
+            <ul><li>AWS, GCP</li><li>Docker and Kubernetes</li><li>Linux, PostgreSQL</li><li>Kafka, Grafana, Prometheus</li><li>Python, C, C++</li><li>Bash, CSH, TCSH</li><li>Git and GitHub</li></ul>
+          </div>
+          <div>
+            <h3>Hardware engineering</h3>
+            <ul><li>Board and system design</li><li>Board bring-up and validation</li><li>USB, SPI, I²C, UART</li><li>Oscilloscope, logic analyzer</li></ul>
           </div>
         </div>
-
       </div>
-    </div>
-  </section>
+    </section>
+
+  </main>
 
   <!-- CONTACT -->
-  <section id="contact">
-    <div class="container">
-      <div class="contact-grid">
-        <div class="contact-text">
-          <div class="section-label">Contact</div>
-          <h2>Let's talk.</h2>
-          <p>
-            I enjoy connecting with people working on interesting problems in tech,
-            infrastructure, or anything in between. If something here resonated —
-            I'm always up for a good conversation.
-          </p>
+  <section class="block contact" id="contact">
+    <div class="wrap">
+      <div class="block-head">
+        <div>
+          <h2>Contact</h2>
+          <p class="contact-note">Happy to talk. Here's where to find me.</p>
         </div>
-        <div style="display:flex;gap:1rem;align-items:center;">
-
-          <a href="https://www.linkedin.com/in/elad-edi" target="_blank" title="LinkedIn"
-             style="width:52px;height:52px;border-radius:10px;border:1px solid var(--border);background:rgba(10,102,194,0.12);color:#0a66c2;display:flex;align-items:center;justify-content:center;transition:transform 0.15s,border-color 0.15s;text-decoration:none;"
-             onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='#0a66c2'"
-             onmouseout="this.style.transform='';this.style.borderColor='var(--border)'">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452H17.21v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.984V9h3.102v1.561h.046c.432-.82 1.487-1.685 3.062-1.685 3.274 0 3.878 2.155 3.878 4.957v6.619zM5.337 7.433a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 0 1 0 3.6zm1.554 13.019H3.783V9h3.108v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          </a>
-
-          <a href="mailto:eladedi11391@gmail.com" title="Email"
-             style="width:52px;height:52px;border-radius:10px;border:1px solid var(--border);background:rgba(234,67,53,0.1);color:#ea4335;display:flex;align-items:center;justify-content:center;transition:transform 0.15s,border-color 0.15s;text-decoration:none;"
-             onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='#ea4335'"
-             onmouseout="this.style.transform='';this.style.borderColor='var(--border)'">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-          </a>
-
-          <a href="https://wa.me/972545328331" target="_blank" title="WhatsApp"
-             style="width:52px;height:52px;border-radius:10px;border:1px solid var(--border);background:rgba(37,211,102,0.1);color:#25d366;display:flex;align-items:center;justify-content:center;transition:transform 0.15s,border-color 0.15s;text-decoration:none;"
-             onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='#25d366'"
-             onmouseout="this.style.transform='';this.style.borderColor='var(--border)'">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
-          </a>
-
-        </div>
+        <div class="contact-icons-desk" role="navigation" aria-label="Contact">
+    <a href="mailto:eladedi11391@gmail.com" aria-label="Email" title="Email">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    </a>
+    <a href="tel:+972545328331" aria-label="Call" title="Call">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    </a>
+    <a href="https://wa.me/972545328331" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/elad-edi" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452H17.21v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.984V9h3.102v1.561h.046c.432-.82 1.487-1.685 3.062-1.685 3.274 0 3.878 2.155 3.878 4.957v6.619zM5.337 7.433a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 0 1 0 3.6zm1.554 13.019H3.783V9h3.108v11.452z"/></svg>
+    </a>
+  </div>
       </div>
+      <h2 class="contact-m-title">Get in touch</h2>
+      <div class="contact-icons" role="navigation" aria-label="Contact">
+    <a href="mailto:eladedi11391@gmail.com" aria-label="Email" title="Email">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    </a>
+    <a href="tel:+972545328331" aria-label="Call" title="Call">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    </a>
+    <a href="https://wa.me/972545328331" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/elad-edi" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452H17.21v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.984V9h3.102v1.561h.046c.432-.82 1.487-1.685 3.062-1.685 3.274 0 3.878 2.155 3.878 4.957v6.619zM5.337 7.433a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 0 1 0 3.6zm1.554 13.019H3.783V9h3.108v11.452z"/></svg>
+    </a>
+  </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    <p>© 2026 Elad Edi · eladedi.com</p>
+    <div class="wrap">
+      <span>© 2026 Elad Edi</span>
+      <span>eladedi.com</span>
+    </div>
   </footer>
 
+  <aside class="quick" id="quick" aria-label="Quick contact">
+    <a href="mailto:eladedi11391@gmail.com" aria-label="Email" title="Email">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    </a>
+    <a href="tel:+972545328331" aria-label="Call" title="Call">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    </a>
+    <a href="https://wa.me/972545328331" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/elad-edi" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452H17.21v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.984V9h3.102v1.561h.046c.432-.82 1.487-1.685 3.062-1.685 3.274 0 3.878 2.155 3.878 4.957v6.619zM5.337 7.433a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 0 1 0 3.6zm1.554 13.019H3.783V9h3.108v11.452z"/></svg>
+    </a>
+  </aside>
+
+  <script>
+  (function () {
+    const bar = document.getElementById('quick');
+    const hero = document.getElementById('top');
+    const contact = document.getElementById('contact');
+    if (!bar || !('IntersectionObserver' in window)) return;
+    let pastHero = false, atContact = false;
+    const update = () => bar.classList.toggle('on', pastHero && !atContact);
+    new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting; update(); }).observe(hero);
+    new IntersectionObserver(([e]) => { atContact = e.isIntersecting; update(); }, { threshold: 0.15 }).observe(contact);
+  })();
+  (function () {
+    const btns = document.querySelectorAll('.filters button');
+    const cards = document.querySelectorAll('#cases .case');
+    btns.forEach(b => b.addEventListener('click', () => {
+      btns.forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
+      const f = b.dataset.f;
+      cards.forEach(c => { c.hidden = !(f === 'all' || c.dataset.k === f); });
+      wrap.scrollLeft = 0;
+    }));
+    const wrap = document.getElementById('cases');
+    const dotsEl = document.getElementById('case-dots');
+    const mobile = window.matchMedia('(max-width: 640px)');
+    const still = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const visible = () => [...cards].filter(c => !c.hidden);
+    let current = 0;
+
+    function buildDots() {
+      dotsEl.innerHTML = '';
+      visible().forEach((c, k) => {
+        const d = document.createElement('button');
+        d.type = 'button';
+        d.setAttribute('role', 'tab');
+        d.setAttribute('aria-label', c.querySelector('h3').textContent);
+        d.addEventListener('click', () => { go(k); pause(); });
+        dotsEl.appendChild(d);
+      });
+      mark();
+    }
+    function mark() {
+      [...dotsEl.children].forEach((d, k) => d.setAttribute('aria-selected', k === current ? 'true' : 'false'));
+    }
+    function count() {
+      const vis = visible();
+      const left = wrap.getBoundingClientRect().left + parseFloat(getComputedStyle(wrap).paddingLeft);
+      let i = 0, best = Infinity;
+      vis.forEach((c, k) => { const d = Math.abs(c.getBoundingClientRect().left - left); if (d < best) { best = d; i = k; } });
+      if (i !== current) { current = i; mark(); }
+    }
+    function go(k) {
+      const vis = visible();
+      if (!vis.length) return;
+      const target = vis[(k + vis.length) % vis.length];
+      wrap.scrollTo({ left: target.offsetLeft - parseFloat(getComputedStyle(wrap).paddingLeft), behavior: still.matches ? 'auto' : 'smooth' });
+    }
+
+    // Autoplay on mobile: advances every 4.5s, pauses while the person interacts or the section is off screen
+    let timer = null, inView = false, resumeAt = 0;
+    function tick() {
+      if (!mobile.matches || still.matches || !inView || Date.now() < resumeAt || document.hidden) return;
+      const n = visible().length;
+      go(current + 1 >= n ? 0 : current + 1);
+    }
+    function pause() { resumeAt = Date.now() + 8000; }
+    ['pointerdown', 'touchstart', 'wheel', 'keydown'].forEach(ev => wrap.addEventListener(ev, pause, { passive: true }));
+    if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { inView = e.isIntersecting; }, { threshold: 0.5 }).observe(wrap);
+    timer = setInterval(tick, 4500);
+
+    btns.forEach(b => b.addEventListener('click', () => { current = 0; buildDots(); pause(); }));
+    wrap.addEventListener('scroll', () => requestAnimationFrame(count), { passive: true });
+    buildDots();
+  })();
+  (function () {
+    const canvas = document.getElementById('grid');
+    const ctx = canvas.getContext('2d');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const COLORS = ['#2F45FF', '#4A5DFF', '#6675FF', '#8290FF', '#3A50E8'];
+    const USER = '#FF9F1C';
+    const EMPTY = '#22314F';
+    let cols, rows, cell, gap, cells, jobs, nextId = 1;
+
+    function layout() {
+      const w = canvas.clientWidth;
+      cols = w < 560 ? 24 : 48;
+      rows = w < 560 ? 10 : 8;
+      gap = w < 560 ? 3 : 4;
+      cell = (w - gap * (cols - 1)) / cols;
+      const h = rows * cell + gap * (rows - 1);
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      cells = new Array(cols * rows).fill(0);
+      jobs = new Map();
+      document.getElementById('s-nodes').textContent = cols * rows;
+      // warm start
+      for (let i = 0; i < 60; i++) submit(false, true);
+    }
+
+    function submit(user, warm) {
+      const size = user ? 6 + Math.floor(Math.random() * 10) : 1 + Math.floor(Math.random() * Math.random() * 18);
+      // first fit over contiguous free nodes
+      let start = -1, run = 0;
+      const begin = user ? 0 : Math.floor(Math.random() * cells.length);
+      for (let k = 0; k < cells.length; k++) {
+        const i = (begin + k) % cells.length;
+        if (i === 0) run = 0;
+        if (cells[i] === 0) { run++; if (run === size) { start = i - size + 1; break; } }
+        else run = 0;
+      }
+      if (start < 0) return false;
+      const id = nextId++;
+      const life = (user ? 260 : 120 + Math.random() * 420) * (warm ? Math.random() : 1);
+      jobs.set(id, { color: user ? USER : COLORS[id % COLORS.length], born: warm ? 30 : 0, life: life + 40 });
+      for (let i = start; i < start + size; i++) cells[i] = id;
+      return true;
+    }
+
+    function draw() {
+      const w = canvas.clientWidth;
+      ctx.clearRect(0, 0, w, canvas.height);
+      let busy = 0;
+      for (let i = 0; i < cells.length; i++) {
+        const x = (i % cols) * (cell + gap), y = Math.floor(i / cols) * (cell + gap);
+        const j = cells[i] && jobs.get(cells[i]);
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = EMPTY;
+        if (j) {
+          busy++;
+          ctx.fillStyle = j.color;
+          const t = j.born, fadeIn = Math.min(1, t / 20), fadeOut = Math.min(1, (j.life - t) / 30);
+          ctx.globalAlpha = Math.max(0.15, Math.min(fadeIn, fadeOut));
+        }
+        ctx.beginPath();
+        ctx.roundRect ? ctx.roundRect(x, y, cell, cell, Math.min(4, cell / 4)) : ctx.rect(x, y, cell, cell);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      document.getElementById('s-jobs').textContent = jobs.size;
+      document.getElementById('s-util').textContent = Math.round(busy / cells.length * 100) + '%';
+    }
+
+    function tick() {
+      for (const [id, j] of jobs) {
+        j.born++;
+        if (j.born >= j.life) {
+          jobs.delete(id);
+          for (let i = 0; i < cells.length; i++) if (cells[i] === id) cells[i] = 0;
+        }
+      }
+      if (Math.random() < 0.35) submit(false);
+      draw();
+      requestAnimationFrame(tick);
+    }
+
+    canvas.addEventListener('click', () => { submit(true); if (reduce) draw(); });
+    let rt;
+    window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { layout(); draw(); }, 150); });
+
+    layout();
+    draw();
+    if (!reduce) requestAnimationFrame(tick);
+  })();
+  </script>
 </body>
 </html>
